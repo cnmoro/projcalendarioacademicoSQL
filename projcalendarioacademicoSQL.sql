@@ -11,15 +11,6 @@ CREATE TABLE `calendarioacademicodb`.`evento` (
   `lon` DOUBLE,
   `data` DATETIME NOT NULL,
   PRIMARY KEY (`id`));
-  
-CREATE TABLE `calendarioacademicodb`.`participacao` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idusuario` INT NOT NULL,
-  `idevento` INT NOT NULL,
-  `feedback` VARCHAR(500),
-  FOREIGN KEY (`idusuario`) REFERENCES `calendarioacademicodb`.`usuario` (`id`),
-  FOREIGN KEY (`idevento`) REFERENCES `calendarioacademicodb`.`evento` (`id`),
-  PRIMARY KEY (`id`));
 
 CREATE TABLE `calendarioacademicodb`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -30,6 +21,15 @@ CREATE TABLE `calendarioacademicodb`.`usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `email_UNIQUE` (`email`));
+  
+  CREATE TABLE `calendarioacademicodb`.`participacao` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idusuario` INT NOT NULL,
+  `idevento` INT NOT NULL,
+  `feedback` VARCHAR(500),
+  FOREIGN KEY (`idusuario`) REFERENCES `calendarioacademicodb`.`usuario` (`id`),
+  FOREIGN KEY (`idevento`) REFERENCES `calendarioacademicodb`.`evento` (`id`),
+  PRIMARY KEY (`id`));
   
   CREATE TABLE `calendarioacademicodb`.`profatendimento` (
   `id` INT NOT NULL AUTO_INCREMENT,
