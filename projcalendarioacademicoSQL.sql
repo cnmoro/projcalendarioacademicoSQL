@@ -9,17 +9,12 @@ CREATE TABLE `calendarioacademicodb`.`evento` (
   `autor` VARCHAR(100) NOT NULL,
   `lat` DOUBLE,
   `lon` DOUBLE,
-  `data` DATETIME NOT NULL,
+  `endereco` VARCHAR(200),
+  `datainicio` DATETIME NOT NULL,
+  `datafim` DATETIME NOT NULL,
   `documento` LONGBLOB,
-  PRIMARY KEY (`id`));
-  
-CREATE TABLE `calendarioacademicodb`.`eventofilho` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idevento` INT NOT NULL,
-  `nome` VARCHAR(100) NOT NULL,
-  `tipo` VARCHAR(100) NOT NULL,
-  `data` DATETIME NOT NULL,
-  FOREIGN KEY (`idevento`) REFERENCES `calendarioacademicodb`.`evento` (`id`),
+  `eventopai` INT,
+  FOREIGN KEY (`eventopai`) REFERENCES `calendarioacademicodb`.`evento` (`id`),
   PRIMARY KEY (`id`));
 
 CREATE TABLE `calendarioacademicodb`.`usuario` (
@@ -28,6 +23,7 @@ CREATE TABLE `calendarioacademicodb`.`usuario` (
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
   `nivelacesso` VARCHAR(50) NOT NULL,
+  `codigorecuperacao` VARCHAR(255),
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `email_UNIQUE` (`email`));
